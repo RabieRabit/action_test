@@ -38,7 +38,7 @@ jobs:
 
       - run: ls build/
       - run: ls build/ios/
-      - run: ls /build/ios/iphoneos/
+      - run: ls build/ios/iphoneos/
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
