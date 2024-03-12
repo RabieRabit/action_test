@@ -25,11 +25,12 @@ jobs:
       # - run: flutter build appbundle
       - run: flutter build ipa --release --no-codesign
       - run: cd build/ios/archive/Runner.xcarchive/Products/Applications
-      - run: cat Runner.app/Info.plist
+      - run: ls -la
+      - run: cat actionTest.app/Info.plist
       - run: mkdir Payload
-      - run: cp -R Runner.app Payload/
-      - run: zip -r Runner.ipa Payload
-      - run: ls -l Runner.ipa
+      - run: cp -R actionTest.app Payload/
+      - run: zip -r actionTest.ipa Payload
+      - run: ls -l actionTest.ipa
 
 
 
