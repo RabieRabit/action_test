@@ -25,20 +25,18 @@ jobs:
       # - run: flutter build appbundle
       - run: flutter build ios --release --no-codesign
       - run: cd ios
-      - run: xcodebuild archive -workspace Runner.xcworkspace -scheme Runner -archivePath build/Runner.xcarchive
+      - run: xcodebuild archive -project Runner.xcodeproj -scheme Runner -archivePath build/Runner.xcarchive
       - run: xcodebuild -exportArchive -archivePath build/Runner.xcarchive -exportPath build/ -exportOptionsPlist exportOptions.plist
 
 
-
-
-      # - name: Create Release
-      #   uses: softprops/action-gh-release@v2
-      #   id: release_id
-      #   if: startsWith(github.ref, 'refs/tags/')
-      #   with: 
-      #     token: ${{ secrets.RELEASE_TOKEN }}
-      #     files: |
-      #       build/ios/iphoneos/*
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        id: release_id
+        if: startsWith(github.ref, 'refs/tags/')
+        with: 
+          token: ${{ secrets.RELEASE_TOKEN }}
+          files: |
+            build/Runner.ipa
           
       # build/app/outputs/flutter-apk/app-release.apk
       # build/app/outputs/bundle/release/app-release.aab
