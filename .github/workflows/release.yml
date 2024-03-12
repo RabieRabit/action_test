@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -29,3 +29,5 @@ jobs:
       - run: flutter pub get
       - run: flutter build apk
       - run: flutter build appbundle
+      - run: flutter build appbundle
+      - run: flutter build ios --release --no-codesign
