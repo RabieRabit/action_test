@@ -34,17 +34,17 @@ jobs:
       - run: flutter pub get
       # - run: flutter build apk
       # - run: flutter build appbundle
-      - run: flutter build ios --release
+      - run: flutter build ios --release --no-codesign
 
-      # - name: Create Release
-      #   uses: softprops/action-gh-release@v2
-      #   id: release_id
-      #   if: startsWith(github.ref, 'refs/tags/')
-      #   with: 
-      #     token: ${{ secrets.RELEASE_TOKEN }}
-      #     files: |
-      #       build/ios/iphoneos/Runner.app
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        id: release_id
+        if: startsWith(github.ref, 'refs/tags/')
+        with: 
+          token: ${{ secrets.RELEASE_TOKEN }}
+          files: |
+            /build/ios/iphoneos/Runner.app
           
-          
+      - run: ls /build/ios/iphoneos
       # build/app/outputs/flutter-apk/app-release.apk
       # build/app/outputs/bundle/release/app-release.aab
