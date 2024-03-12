@@ -45,4 +45,4 @@ jobs:
           files: |
             build/app/outputs/flutter-apk/app-release.apk
             build/app/outputs/bundle/release/app-release.aab
-            /Users/runner/work/action_test/action_test/build/ios/iphoneos/Runner.app
+            Users/runner/work/action_test/action_test/build/ios/iphoneos/Runner.app
