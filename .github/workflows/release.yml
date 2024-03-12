@@ -16,17 +16,6 @@ jobs:
         with: 
           java-version: "12.x"
 
-      # - name: Create a Release
-      #   id: release_id
-      #   uses: actions/create-release@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-      #   with:
-      #     tag_name: ${{ github.ref }}
-      #     release_name: ${{ github.ref }}
-      #     draft: false
-      #     prerelease: false
-
       - name: build apk
         uses: subosito/flutter-action@v2
         with:
@@ -34,7 +23,7 @@ jobs:
       - run: flutter pub get
       # - run: flutter build apk
       # - run: flutter build appbundle
-      - run: flutter build ipa --release --no-codesign
+      - run: flutter build ios --no-codesign
 
       - run: ls build/
       - run: ls build/ios/
@@ -47,7 +36,7 @@ jobs:
         with: 
           token: ${{ secrets.RELEASE_TOKEN }}
           files: |
-            build/ios/iphoneos/Runner.ipa
+            build/ios/iphoneos/Runner.app
           
       # build/app/outputs/flutter-apk/app-release.apk
       # build/app/outputs/bundle/release/app-release.aab
