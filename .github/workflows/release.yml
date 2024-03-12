@@ -10,14 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Create a Release
-        id: create_release
+        id: release_id
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          release_name: ${{ github.ref }}
           draft: false
           prerelease: false
+                    
+      - name: build apk
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.19.*
+      - run: flutter pub get
+      - run: flutter build apk
+      - run: flutter build appbundle
