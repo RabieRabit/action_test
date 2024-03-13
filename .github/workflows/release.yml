@@ -29,7 +29,7 @@ jobs:
       - run: cp -R build/ios/archive/Runner.xcarchive/Products/Applications/Runner.app build/ios/archive/Runner.xcarchive/Products/Applications/Payload/
       - run: zip -r app.ipa build/ios/archive/Runner.xcarchive/Products/Applications/Payload/
       
-      - run: ls build/ios/archive/Runner.xcarchive/Products/Applications/
+      - run: ls build/ios/archive/Runner.xcarchive/Products/Applications/Payload/
 
       # - name: Create Release
       #   uses: softprops/action-gh-release@v2
