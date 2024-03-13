@@ -29,16 +29,14 @@ jobs:
       - run: cp -R build/ios/archive/Runner.xcarchive/Products/Applications/Runner.app build/ios/archive/Runner.xcarchive/Products/Applications/Payload/
       - run: zip -r build/app.ipa build/ios/archive/Runner.xcarchive/Products/Applications/Payload/
       
-      - run: ls build/
-
-      # - name: Create Release
-      #   uses: softprops/action-gh-release@v2
-      #   id: release_id
-      #   if: startsWith(github.ref, 'refs/tags/')
-      #   with: 
-      #     token: ${{ secrets.RELEASE_TOKEN }}
-      #     files: |
-      #       build/Runner.ipa
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        id: release_id
+        if: startsWith(github.ref, 'refs/tags/')
+        with: 
+          token: ${{ secrets.RELEASE_TOKEN }}
+          files: |
+            build/app.ipa
           
       # build/app/outputs/flutter-apk/app-release.apk
       # build/app/outputs/bundle/release/app-release.aab
