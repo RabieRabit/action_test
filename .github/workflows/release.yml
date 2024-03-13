@@ -6,8 +6,8 @@ on:
       - '*'
 
 jobs:
-  deploy:
-    runs-on: macos-latest
+  BuildAPKAndRelease:
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -21,13 +21,15 @@ jobs:
         with:
           flutter-version: 3.19.x
       - run: flutter pub get
-      # - run: flutter build apk
+      - run: flutter build apk
       # - run: flutter build appbundle
-      - run: flutter build ipa --release --no-codesign
+      # - run: flutter build ipa --release --no-codesign
 
-      - run: mkdir build/ios/archive/Runner.xcarchive/Products/Applications/Payload/
-      - run: cp -R build/ios/archive/Runner.xcarchive/Products/Applications/Runner.app build/ios/archive/Runner.xcarchive/Products/Applications/Payload/
-      - run: zip -r build/app.ipa build/ios/archive/Runner.xcarchive/Products/Applications/Payload/
+      # - run: mkdir build/ios/archive/Runner.xcarchive/Products/Applications/Payload/
+      # - run: cp -R build/ios/archive/Runner.xcarchive/Products/Applications/Runner.app build/ios/archive/Runner.xcarchive/Products/Applications/Payload/
+      # - run: zip -r build/app.ipa build/ios/archive/Runner.xcarchive/Products/Applications/Payload/
+
+      - run: cp -R build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/myOwnName.apk
       
       - name: Create Release
         uses: softprops/action-gh-release@v2
@@ -36,7 +38,7 @@ jobs:
         with: 
           token: ${{ secrets.RELEASE_TOKEN }}
           files: |
-            build/app.ipa
+            build/app/outputs/flutter-apk/myOwnName.apk
           
-      # build/app/outputs/flutter-apk/app-release.apk
+      # build/app.ipa
       # build/app/outputs/bundle/release/app-release.aab

@@ -30,6 +30,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_core:
+    git:
+      url: git@github.com:RabieRabit/flutter_core.git
+      ref: 2.7.2
 
 
   # The following adds the Cupertino Icons font to your application.
